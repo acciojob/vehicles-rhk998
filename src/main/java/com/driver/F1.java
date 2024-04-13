@@ -7,8 +7,11 @@ public class F1 extends Car {
         super(name, 4, 2, 7, isManual, "Formula 1", 1);
     }
 
+
+
     public void accelerate(int rate){
-        int newSpeed = 0; //set the value of new speed by using currentSpeed and rate
+         //set the value of new speed by using currentSpeed and rate
+        int newSpeed = rate * 10;
         /**
          * speed 0: gear 1
          * speed 1-50: gear 1
@@ -19,14 +22,36 @@ public class F1 extends Car {
          * speed more than 250: gear 6
          */
 
-        if(newSpeed == 0) {
-            //Stop the car, set gear as 1
-        }
+
         //for all other cases, change the gear accordingly
 
         if(newSpeed > 0) {
             changeSpeed(newSpeed, getCurrentDirection());
         }
+
+        int currentGear;
+        switch (newSpeed / 50) {
+            case 0:
+                currentGear = 1;
+                break;
+            case 1:
+                currentGear = 2;
+                break;
+            case 2:
+                currentGear = 3;
+                break;
+            case 3:
+                currentGear = 4;
+                break;
+            case 4:
+                currentGear = 5;
+                break;
+            default:
+                currentGear = 6;
+                break;
+        }
+
+        setCurrentGear(currentGear);
     }
 
 
